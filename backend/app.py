@@ -4,6 +4,7 @@ from database import get_db, init_db
 
 app = Flask(__name__)
 # CORS(app, origins=['http://localhost:5173/'])
+init_db() # 👈 THIS IS THE FIX
 CORS(app)
 
 def row_to_dict(row):
