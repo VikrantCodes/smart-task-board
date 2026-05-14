@@ -7,7 +7,7 @@ app = Flask(__name__)
 # CORS(app, origins=['http://localhost:5173/'])
 init_db()   # Creates table on first run
 # CORS(app)
-CORS(app, origins=['https://smart-task-board-seven.vercel.app/'])
+CORS(app, origins=['https://smart-task-board-seven.vercel.app'])
 
 def row_to_dict(row):
     '''Convert a sqlite3.Row to a plain dict Flask can serialize'''
