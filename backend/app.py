@@ -1,10 +1,10 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from database import get_db, init_db
+import os
 
 app = Flask(__name__)
 # CORS(app, origins=['http://localhost:5173/'])
-init_db() # 👈 THIS IS THE FIX
 CORS(app)
 
 def row_to_dict(row):
@@ -73,5 +73,4 @@ def delete_task(task_id):
 if __name__ == '__main__':
     init_db()   # Creates table on first run
     # app.run(debug=True, port=5000)
-    import os
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
