@@ -1,11 +1,22 @@
-import sqlite3
+# import sqlite3
 
-DATABASE = 'tasks.db'   # SQLite creates this file automatically
+# DATABASE = 'tasks.db'   # SQLite creates this file automatically
+
+# def get_db():
+#     '''Return an open database connection. row_factory enables
+#        column access by name: row['title'] instead of row[1]'''
+#     conn = sqlite3.connect(DATABASE)
+#     conn.row_factory = sqlite3.Row
+#     return conn
+
+import sqlite3
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "tasks.db")
 
 def get_db():
-    '''Return an open database connection. row_factory enables
-       column access by name: row['title'] instead of row[1]'''
-    conn = sqlite3.connect(DATABASE)
+    conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
 
