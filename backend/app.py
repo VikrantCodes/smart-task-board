@@ -71,6 +71,5 @@ def delete_task(task_id):
     return jsonify({'message': 'Task deleted successfully'}), 200
 
 if __name__ == '__main__':
-    init_db()   # Creates table on first run
-    # app.run(debug=True, port=5000)
+    init_db()
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))

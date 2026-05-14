@@ -1,8 +1,6 @@
 import sqlite3
-import os
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATABASE = os.path.join(BASE_DIR, "tasks.db")
+DATABASE = 'tasks.db'   # SQLite creates this file automatically
 
 def get_db():
     '''Return an open database connection. row_factory enables
