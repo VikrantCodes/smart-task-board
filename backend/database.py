@@ -9,6 +9,22 @@
 #     conn.row_factory = sqlite3.Row
 #     return conn
 
+# def init_db():
+#     '''Create the tasks table if it does not already exist.
+#        Call this once when the server starts.'''
+#     conn = get_db()
+#     conn.execute('''
+#         CREATE TABLE IF NOT EXISTS tasks (
+#             id          INTEGER PRIMARY KEY AUTOINCREMENT,
+#             title       TEXT    NOT NULL,
+#             completed   INTEGER DEFAULT 0,
+#             created_at  TEXT    DEFAULT (datetime('now'))
+#         )
+#     ''')
+#     conn.commit()
+#     conn.close()
+#     print('Database ready.')
+
 import sqlite3
 import os
 
@@ -21,17 +37,19 @@ def get_db():
     return conn
 
 def init_db():
-    '''Create the tasks table if it does not already exist.
-       Call this once when the server starts.'''
     conn = get_db()
-    conn.execute('''
+    cursor = conn.cursor()
+
+    cursor.execute("""
         CREATE TABLE IF NOT EXISTS tasks (
-            id          INTEGER PRIMARY KEY AUTOINCREMENT,
-            title       TEXT    NOT NULL,
-            completed   INTEGER DEFAULT 0,
-            created_at  TEXT    DEFAULT (datetime('now'))
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            done BOOLEAN DEFAULT 0,
+            priority TEXT DEFAULT 'medium',
+            category_id INTEGER,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )
-    ''')
+    """)
+
     conn.commit()
     conn.close()
-    print('Database ready.')
